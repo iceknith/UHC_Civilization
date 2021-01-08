@@ -1,0 +1,6 @@
+name: Uhc_civilisation
+version: ${project.version}
+main: Main.jar
+api-version: 1.15.2
+authors: [Iceknith]
+description: An civilisation uhc plugin

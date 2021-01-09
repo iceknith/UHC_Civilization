@@ -6,7 +6,6 @@ _scroll to the bottom for english_
 
 ## Un plugin bukkit UHC civilisation
 
-<hr/>
 4 ou 5 clans sont présents sur la map. Il y a:
 <ul>
  <li> <b>Le clan des bourgeois</b> qui auront un équipement dès le début, mais qui ne pourront pas farmer et seront en infériorité</li>
@@ -27,7 +26,6 @@ Le but de tout le monde est quand même de gagner, mais les bourgeois ont un eff
 
 ## Un plugin bukkit UHC civilisation
 
-<hr />
 4 or 5 clans are present on the map. There is:
 <ul>
  <li> <b> The rich clan </b> who will have equipment from the start, but who will not be able to farm. There will be less of them </li>

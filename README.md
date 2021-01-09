@@ -1,7 +1,15 @@
 <img src="./logo-3.png"></img>
 
-_scroll to the bottom for english_
+<p style="display:flex;justify-content:space-around;flex-wrap:wrap;margin:3em">
+<img src="https://img.shields.io/github/issues/iceknith/UHC_Civilization?style=for-the-badge"></img>
+<img src="https://img.shields.io/github/stars/iceknith/UHC_Civilization?style=for-the-badge"></img>
+<img src="https://img.shields.io/github/license/iceknith/UHC_Civilization?style=for-the-badge"></img>
+<img src="https://img.shields.io/badge/version-pre--alpha-%23e30?style=for-the-badge"></img>
+<img src="https://img.shields.io/badge/Tested%20with-Spigot%201.16.4-%230d0?style=for-the-badge"></img>
+</p>
 
+_scroll to the bottom for english_
+<br/>
 # Français
 
 ## Un plugin bukkit UHC civilisation

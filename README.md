@@ -1,4 +1,4 @@
-<img src="./logo-2.png"></img>
+<img src="./logo-3.png"></img>
 
 _scroll to the bottom for english_
 
@@ -7,6 +7,7 @@ _scroll to the bottom for english_
 ## Un plugin bukkit UHC civilisation
 
 4 ou 5 clans sont présents sur la map. Il y a:
+
 <ul>
  <li> <b>Le clan des bourgeois</b> qui auront un équipement dès le début, mais qui ne pourront pas farmer et seront en infériorité</li>
 <li> <b>Le clan des farmeurs</b> qui devront donner leurs récoltes aux bourgeois, et qui n'auront comme équipement que des outils, leur seul moyen de s'équiper sera de cacher quelques unes de leurs recoltes aux bourgeois</li>
@@ -27,6 +28,7 @@ Le but de tout le monde est quand même de gagner, mais les bourgeois ont un eff
 ## A bukkit UHC civilization plugin
 
 4 or 5 clans are present on the map. There is:
+
 <ul>
  <li> <b> The rich clan </b> who will have equipment from the start, but who will not be able to farm. There will be less of them </li>
 <li> <b> The clan of farmers </b> who will have to give their crops to the rich, and who will only have tools as equipment, their only way to equip themselves will be to hide some of their crops from the rich </li>

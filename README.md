@@ -40,4 +40,3 @@ The nomad clan will have to equip themselves while protecting their herd from ra
 Thieves must equip themselves without being spotted and kill most people.
 </p>
 Everyone's goal is still to win, but the rich have a resistance effect at their base, the nomads can only eat food from their herd (at the start), and the farmers lose food (at the start) if they leave their village. And of course, the clans who killed their enemy the rich for the farmer, the barbarians for the rich and 5 raids for the nomads.
-<br/> <br/> <br/>

@@ -1,4 +1,4 @@
-<img src="./logo-2-alpha.png"></img>
+<img src="./logo-2.png"></img>
 
 _scroll to the bottom for english_
 

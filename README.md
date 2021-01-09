@@ -24,7 +24,7 @@ Le but de tout le monde est quand même de gagner, mais les bourgeois ont un eff
 
 # English
 
-## Un plugin bukkit UHC civilisation
+## A bukkit UHC civilization plugin
 
 4 or 5 clans are present on the map. There is:
 <ul>

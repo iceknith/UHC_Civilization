@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/github/stars/iceknith/UHC_Civilization?style=for-the-badge"></img>
 <img src="https://img.shields.io/github/license/iceknith/UHC_Civilization?style=for-the-badge"></img>
 <img src="https://img.shields.io/badge/version-pre--alpha-%23e30?style=for-the-badge"></img>
-<img src="https://img.shields.io/badge/Tested%20with-Spigot%201.16.4-%230d0?style=for-the-badge"></img>
+<img src="https://img.shields.io/badge/Tested%20with-Spigot%201.8-%230d0?style=for-the-badge"></img>
 </p>
 
 _scroll to the bottom for english_

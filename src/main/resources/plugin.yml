@@ -1,6 +1,10 @@
 name: Uhc_civilisation
 version: ${project.version}
-main: Main.jar
-api-version: 1.15.2
+main: fr.iceknith.uhc_civilization.Main
+api-version: 1.8
 authors: [Iceknith]
 description: An civilisation uhc plugin
+commands:
+  civ:
+    description: Everything that is in touch with the civilization uhc is in this command
+    usage: /civ <args>

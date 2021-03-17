@@ -6,33 +6,31 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class Main extends JavaPlugin {
 
-    //the length of the game
+    /**
+     * The duration of the game
+     */
     public static int Length;
 
-    //the amount of player in the Bourgeois team
-    public static int playerBourgeoisNum;
-     public static List<Player> bourgeois = new ArrayList<Player>();
+    /**
+     * The amount of players each team
+     */
+    public static Map<SocialClass, Integer> playerCount = new HashMap<>();
 
-    //the amount of player in the Nomadic team
-    public static int playerNomadicNum;
-    public static List<Player> nomadic = new ArrayList<Player>();
+    public static Map<Player, SocialClass> playerdistribution = new HashMap<>();
 
-    //the amount of player in the Thief team
-    public static int playerThiefNum;
-    public static List<Player> thief = new ArrayList<Player>();
-
-    //the amount of player in the Farmer team
-    public static int playerFarmerNum;
-    public static List<Player> farmer = new ArrayList<Player>();
-
-    //the amount of spectator
-    public static int playerSpecNum = 0;
-    public static List<Player> spec = new ArrayList<Player>();
-
+    public static int totalPlayersFromMap() {
+        int result = 0;
+        for(SocialClass sc : playerCount.keySet()){
+            result += playerCount.get(sc);
+        }
+        return result;
+    }
 
 
     @Override

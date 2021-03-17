@@ -1,14 +1,11 @@
 package fr.iceknith.uhc_civilization;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -24,52 +21,29 @@ public class Commands implements CommandExecutor {
                     //determine the proportion of player per team
                     case "team":
                         if (args.length >= 2) {
+                            SocialClass sClass;
                             switch (args[1]) {
                                 case "bourgeois":
-                                    if (args.length == 3){
-                                        Main.playerBourgeoisNum = Integer.parseInt(args[2]);
-                                        commandSender.sendMessage("The Bourgeois player amount has been set to " + Main.playerBourgeoisNum);
-                                    }else{
-                                        commandSender.sendMessage("you need to specify the amount of player you want to put in this class");
-                                    }
+                                    sClass = SocialClass.BOURGEOIS;
                                     break;
                                 case "nomadic":
-                                    if (args.length == 3){
-                                        Main.playerNomadicNum = Integer.parseInt(args[2]);
-                                        commandSender.sendMessage("The Nomadic player amount has been set to " + Main.playerNomadicNum);
-                                    }else{
-                                        commandSender.sendMessage("you need to specify the amount of player you want to put in this class");
-                                    }
+                                    sClass = SocialClass.NOMADIC;
                                     break;
                                 case "farmer":
-                                    if (args.length == 3){
-                                        Main.playerFarmerNum = Integer.parseInt(args[2]);
-                                        commandSender.sendMessage("The Farmer player amount has been set to " + Main.playerFarmerNum);
-                                    }else{
-                                        commandSender.sendMessage("you need to specify the amount of player you want to put in this class");
-                                    }
+                                    sClass = SocialClass.FARMER;
                                     break;
                                 case "thief":
-                                    if (args.length == 3){
-                                        Main.playerThiefNum = Integer.parseInt(args[2]);
-                                        commandSender.sendMessage("The Thief player amount has been set to " + Main.playerThiefNum);
-                                    }else{
-                                        commandSender.sendMessage("you need to specify the amount of player you want to put in this class");
-                                    }
+                                    sClass = SocialClass.THIEF;
                                     break;
                                 case "spectator":
-                                    if (args.length == 3){
-                                        Main.playerSpecNum = Integer.parseInt(args[2]);
-                                        commandSender.sendMessage("The Spectator player amount has been set to " + Main.playerSpecNum);
-                                    }else{
-                                        commandSender.sendMessage("you need to specify the amount of player you want to put in this class");
-                                    }
-
+                                    sClass = SocialClass.SPEC;
                                     break;
                                 default:
-                                    commandSender.sendMessage("Couldn't find that specific class, please try again");
-                                    break;
+                                    commandSender.sendMessage("Couldn't find the '" + args[1] + "' class, please try again");
+                                    return true;
                             }
+                            Main.playerCount.put(sClass, Integer.parseInt(args[2]));
+                            printPlayerCount(commandSender);
                         }
                         break;
 
@@ -77,46 +51,19 @@ public class Commands implements CommandExecutor {
                     case "start":
                         if (commandSender instanceof Player) {
                             int playerNum = ((Player) commandSender).getWorld().getPlayers().size();
-                            if (playerNum == Main.playerBourgeoisNum + Main.playerNomadicNum + Main.playerFarmerNum + Main.playerThiefNum + Main.playerSpecNum) {
-                                List<Player> players = new ArrayList<Player>();
-                                int i = -1;
-                                while (((Player) commandSender).getWorld().getPlayers().size() > players.size()) {
-                                    i++;
-                                    players.add(((Player) commandSender).getWorld().getPlayers().get(i));
+                            if (playerNum == Main.totalPlayersFromMap()) {
+                                List<Player> players = ((Player)commandSender).getWorld().getPlayers();
+                                Collections.shuffle(players);
+                                for (SocialClass sClass : Main.playerCount.keySet()) {
+                                    for(int i = 0 ; i < Main.playerCount.get(sClass);i++){
+                                        if(players.size() == 0){
+                                            break;
+                                        }
+                                        Main.playerdistribution.put(players.get(0),sClass);
+                                        players.remove(0);
+                                    }
                                 }
-                                i = -1;
-                                Random rand = new Random();
-                                int rand_int;
-                                while (i < Main.playerThiefNum) {
-                                    i++;
-                                    rand_int = rand.nextInt(players.size());
-                                    Main.thief.add(players.get(rand_int));
-                                    players.remove(rand_int);
-                                }
-                                while (i < Main.playerNomadicNum) {
-                                    i++;
-                                    rand_int = rand.nextInt(players.size());
-                                    Main.nomadic.add(players.get(rand_int));
-                                    players.remove(rand_int);
-                                }
-                                while (i < Main.playerBourgeoisNum) {
-                                    i++;
-                                    rand_int = rand.nextInt(players.size());
-                                    Main.bourgeois.add(players.get(rand_int));
-                                    players.remove(rand_int);
-                                }
-                                while (i < Main.playerFarmerNum) {
-                                    i++;
-                                    rand_int = rand.nextInt(players.size());
-                                    Main.farmer.add(players.get(rand_int));
-                                    players.remove(rand_int);
-                                }
-                                while (i < Main.playerSpecNum) {
-                                    i++;
-                                    rand_int = rand.nextInt(players.size());
-                                    Main.spec.add(players.get(rand_int));
-                                    players.remove(rand_int);
-                                }
+                                printPlayerDispersion(commandSender);
                             } else {
                                 commandSender.sendMessage("you must have as many players as people online in this world");
                             }
@@ -135,12 +82,26 @@ public class Commands implements CommandExecutor {
             commandSender.sendMessage("usage /civ <args>");
         } catch (
                 Exception e) {
-            commandSender.sendMessage("an error has occured");
-            commandSender.sendMessage("usage /civ <args>");
+            commandSender.sendMessage("An error occurred, see console");
+            e.printStackTrace();
 
         }
         return true;
 
+    }
+
+    private void printPlayerDispersion(CommandSender sender) {
+        sender.sendMessage("Team player teams:");
+        for (Player player : Main.playerdistribution.keySet()) {
+            sender.sendMessage(player.getDisplayName() + "\t:\t" + String.valueOf(Main.playerdistribution.get(player)));
+        }
+    }
+
+    private void printPlayerCount(CommandSender sender) {
+        sender.sendMessage("Team player counts:");
+        for (SocialClass sClass : Main.playerCount.keySet()) {
+            sender.sendMessage(sClass.toString() + "\t:\t" + String.valueOf(Main.playerCount.get(sClass)));
+        }
     }
 
 

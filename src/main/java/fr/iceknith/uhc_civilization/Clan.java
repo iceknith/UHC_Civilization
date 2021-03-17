@@ -3,7 +3,7 @@ package fr.iceknith.uhc_civilization;
 /**
  * Social classes assigned to each player
  */
-public enum SocialClass {
+public enum Clan {
     /**
      * The bourgeois class will have equipment from the start, but who will not be able to farm. There will be less of them
      */

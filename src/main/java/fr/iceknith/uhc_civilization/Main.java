@@ -16,12 +16,12 @@ public final class Main extends JavaPlugin {
     /**
      * The amount of players each team
      */
-    public static Map<SocialClass, Integer> playerCount = new HashMap<>();
+    public static Map<Clan, Integer> playerCount = new HashMap<>();
 
     /**
      * The social class associated to each player
      */
-    public static Map<Player, SocialClass> playerdistribution = new HashMap<>();
+    public static Map<Player, Clan> playerdistribution = new HashMap<>();
 
     /**
      * Get the required amount of players based on what is set up with the /civ team
@@ -29,7 +29,7 @@ public final class Main extends JavaPlugin {
      */
     public static int totalPlayers() {
         int result = 0;
-        for(SocialClass sc : playerCount.keySet()){
+        for(Clan sc : playerCount.keySet()){
             result += playerCount.get(sc);
         }
         return result;

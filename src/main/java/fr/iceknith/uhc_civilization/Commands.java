@@ -22,28 +22,28 @@ public class Commands implements CommandExecutor {
                     //determine the proportion of player per team
                     case "team":
                         if (args.length >= 2) {
-                            SocialClass sClass;
+                            Clan clan;
                             switch (args[1]) {
                                 case "bourgeois":
-                                    sClass = SocialClass.BOURGEOIS;
+                                    clan = Clan.BOURGEOIS;
                                     break;
                                 case "nomadic":
-                                    sClass = SocialClass.NOMADIC;
+                                    clan = Clan.NOMADIC;
                                     break;
                                 case "farmer":
-                                    sClass = SocialClass.FARMER;
+                                    clan = Clan.FARMER;
                                     break;
                                 case "thief":
-                                    sClass = SocialClass.THIEF;
+                                    clan = Clan.THIEF;
                                     break;
                                 case "spectator":
-                                    sClass = SocialClass.SPEC;
+                                    clan = Clan.SPEC;
                                     break;
                                 default:
                                     commandSender.sendMessage("Couldn't find the '" + args[1] + "' class, please try again");
                                     return true;
                             }
-                            Main.playerCount.put(sClass, Integer.parseInt(args[2]));
+                            Main.playerCount.put(clan, Integer.parseInt(args[2]));
                             printPlayerCount(commandSender);
                         }
                         break;
@@ -55,16 +55,23 @@ public class Commands implements CommandExecutor {
                             if (playerNum == Main.totalPlayers()) {
                                 List<Player> players = ((Player) commandSender).getWorld().getPlayers();
                                 Collections.shuffle(players);
-                                for (SocialClass sClass : Main.playerCount.keySet()) {
-                                    for (int i = 0; i < Main.playerCount.get(sClass); i++) {
-                                        if (players.size() == 0) {
-                                            break;
-                                        }
-                                        Main.playerdistribution.put(players.get(0), sClass);
+                                //Scoreboard s = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
+                                //Scoreboard s = sm.getNewScoreboard();
+                                //s.registerNewTeam(Clan.BOURGEOIS.toString()).setPrefix(ChatColor.BLUE + "");
+                                //s.registerNewTeam(Clan.FARMER.toString()).setPrefix(ChatColor.GREEN + "");
+                                //s.registerNewTeam(Clan.NOMADIC.toString()).setPrefix(ChatColor.GOLD + "");
+                                //s.registerNewTeam(Clan.THIEF.toString()).setPrefix(ChatColor.BLACK + "");
+                                //s.registerNewTeam(Clan.SPEC.toString()).setPrefix(ChatColor.GRAY + "");
+                                for (Clan clan : Main.playerCount.keySet()) {
+                                    for (int i = 0; i < Main.playerCount.get(clan); i++) {
+                                        Main.playerdistribution.put(players.get(0), clan);
+                                        //Objects.requireNonNull(s.getTeam(String.valueOf(clan))).addEntry(String.valueOf(players.get(0)));
+                                        players.get(0).setDisplayName(ChatColor.BLUE+players.get(0).getName());
                                         players.remove(0);
                                     }
                                 }
                                 printPlayerDispersion(commandSender);
+                                //starting the game ...
                             } else {
                                 commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");
                             }
@@ -99,7 +106,7 @@ public class Commands implements CommandExecutor {
 
     private void printPlayerCount(CommandSender sender) {
         sender.sendMessage("Team player counts:");
-        for (SocialClass sClass : Main.playerCount.keySet()) {
+        for (Clan sClass : Main.playerCount.keySet()) {
             sender.sendMessage(sClass.toString() + "\t:\t" + Main.playerCount.get(sClass));
         }
     }

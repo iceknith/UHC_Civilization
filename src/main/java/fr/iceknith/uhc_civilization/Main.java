@@ -4,11 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.xml.bind.Marshaller;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class Main extends JavaPlugin {
 
@@ -22,9 +18,16 @@ public final class Main extends JavaPlugin {
      */
     public static Map<SocialClass, Integer> playerCount = new HashMap<>();
 
+    /**
+     * The social class associated to each player
+     */
     public static Map<Player, SocialClass> playerdistribution = new HashMap<>();
 
-    public static int totalPlayersFromMap() {
+    /**
+     * Get the required amount of players based on what is set up with the /civ team
+     * @return The required amount of players for this game
+     */
+    public static int totalPlayers() {
         int result = 0;
         for(SocialClass sc : playerCount.keySet()){
             result += playerCount.get(sc);
@@ -32,14 +35,19 @@ public final class Main extends JavaPlugin {
         return result;
     }
 
-
+    /**
+     * Method called at the start of the plugin
+     */
     @Override
-    public void onEnable() {
+    public void onEnable(){
         // Plugin startup logic
-        getCommand("civ").setExecutor(new Commands());
+        Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
         Bukkit.getServer().getPluginManager().registerEvents(new UhcListener(), this);
     }
 
+    /**
+     * Method called at the shutdown of the plugin
+     */
     @Override
     public void onDisable() {
         // Plugin shutdown logic

@@ -5,7 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -15,7 +16,7 @@ public class Commands implements CommandExecutor {
                 switch (args[0]) {
                     case "length":
                         Main.Length = Integer.parseInt(args[1]);
-                        commandSender.sendMessage("The length has been correctly set to " + Main.Length + "minutes");
+                        commandSender.sendMessage("The length has been set to " + Main.Length + " minutes");
                         break;
 
                     //determine the proportion of player per team
@@ -47,25 +48,25 @@ public class Commands implements CommandExecutor {
                         }
                         break;
 
-                    //startig the game
+                    //Start the game
                     case "start":
                         if (commandSender instanceof Player) {
                             int playerNum = ((Player) commandSender).getWorld().getPlayers().size();
-                            if (playerNum == Main.totalPlayersFromMap()) {
-                                List<Player> players = ((Player)commandSender).getWorld().getPlayers();
+                            if (playerNum == Main.totalPlayers()) {
+                                List<Player> players = ((Player) commandSender).getWorld().getPlayers();
                                 Collections.shuffle(players);
                                 for (SocialClass sClass : Main.playerCount.keySet()) {
-                                    for(int i = 0 ; i < Main.playerCount.get(sClass);i++){
-                                        if(players.size() == 0){
+                                    for (int i = 0; i < Main.playerCount.get(sClass); i++) {
+                                        if (players.size() == 0) {
                                             break;
                                         }
-                                        Main.playerdistribution.put(players.get(0),sClass);
+                                        Main.playerdistribution.put(players.get(0), sClass);
                                         players.remove(0);
                                     }
                                 }
                                 printPlayerDispersion(commandSender);
                             } else {
-                                commandSender.sendMessage("you must have as many players as people online in this world");
+                                commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");
                             }
 
                         }
@@ -84,7 +85,6 @@ public class Commands implements CommandExecutor {
                 Exception e) {
             commandSender.sendMessage("An error occurred, see console");
             e.printStackTrace();
-
         }
         return true;
 
@@ -93,14 +93,14 @@ public class Commands implements CommandExecutor {
     private void printPlayerDispersion(CommandSender sender) {
         sender.sendMessage("Team player teams:");
         for (Player player : Main.playerdistribution.keySet()) {
-            sender.sendMessage(player.getDisplayName() + "\t:\t" + String.valueOf(Main.playerdistribution.get(player)));
+            sender.sendMessage(player.getDisplayName() + "\t:\t" + Main.playerdistribution.get(player));
         }
     }
 
     private void printPlayerCount(CommandSender sender) {
         sender.sendMessage("Team player counts:");
         for (SocialClass sClass : Main.playerCount.keySet()) {
-            sender.sendMessage(sClass.toString() + "\t:\t" + String.valueOf(Main.playerCount.get(sClass)));
+            sender.sendMessage(sClass.toString() + "\t:\t" + Main.playerCount.get(sClass));
         }
     }
 

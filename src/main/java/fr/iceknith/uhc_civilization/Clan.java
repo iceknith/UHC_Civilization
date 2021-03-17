@@ -1,5 +1,7 @@
 package fr.iceknith.uhc_civilization;
 
+import org.bukkit.ChatColor;
+
 /**
  * Social classes assigned to each player
  */
@@ -27,5 +29,38 @@ public enum Clan {
     /**
      * The spectators will have no influence on the gameplay, they will as their name indicates spectate
      */
-    SPEC
+    SPEC;
+
+    public ChatColor getChatColor() {
+        switch (this) {
+            case BOURGEOIS:
+                return ChatColor.BLUE;
+            case THIEF:
+                return ChatColor.BLACK;
+            case NOMADIC:
+                return ChatColor.GOLD;
+            case FARMER:
+                return ChatColor.GREEN;
+            case SPEC:
+                return ChatColor.GRAY;
+            default:
+                return ChatColor.RESET;
+        }
+    }
+    public String toText() {
+        switch (this) {
+            case BOURGEOIS:
+                return "Bourgeois";
+            case THIEF:
+                return "Thief";
+            case NOMADIC:
+                return "Nomadic";
+            case FARMER:
+                return "Farmer";
+            case SPEC:
+                return "Spectator";
+            default:
+                return "";
+        }
+    }
 }

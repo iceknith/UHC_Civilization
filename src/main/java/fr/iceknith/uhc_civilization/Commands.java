@@ -56,23 +56,35 @@ public class Commands implements CommandExecutor {
                             if (playerNum == Main.totalPlayers()) {
                                 List<Player> players = ((Player) commandSender).getWorld().getPlayers();
                                 Collections.shuffle(players);
-                                //Scoreboard s = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
-                                //Scoreboard s = sm.getNewScoreboard();
-                                //s.registerNewTeam(Clan.BOURGEOIS.toString()).setPrefix(ChatColor.BLUE + "");
-                                //s.registerNewTeam(Clan.FARMER.toString()).setPrefix(ChatColor.GREEN + "");
-                                //s.registerNewTeam(Clan.NOMADIC.toString()).setPrefix(ChatColor.GOLD + "");
-                                //s.registerNewTeam(Clan.THIEF.toString()).setPrefix(ChatColor.BLACK + "");
-                                //s.registerNewTeam(Clan.SPEC.toString()).setPrefix(ChatColor.GRAY + "");
                                 for (Clan clan : Main.playerCount.keySet()) {
                                     for (int i = 0; i < Main.playerCount.get(clan); i++) {
                                         Main.playerdistribution.put(players.get(0), clan);
-                                        //Objects.requireNonNull(s.getTeam(String.valueOf(clan))).addEntry(String.valueOf(players.get(0)));
-                                        players.get(0).setDisplayName(ChatColor.BLUE + players.get(0).getName());
+                                        ChatColor color = clan.getChatColor();
+                                        String newName = String.valueOf(color) +
+                                                ChatColor.BOLD +
+                                                "[" +
+                                                clan.toText() +
+                                                "] " +
+                                                ChatColor.RESET +
+                                                players.get(0).getName() +
+                                                ChatColor.RESET;
+                                        if (clan == Clan.SPEC) {
+                                            newName = String.valueOf(color) +
+                                                    ChatColor.ITALIC +
+                                                    "[" +
+                                                    clan.toText() +
+                                                    "] " +
+
+                                                    players.get(0).getName() +
+                                                    ChatColor.RESET;
+                                        }
+                                        players.get(0).setDisplayName(newName);
+                                        players.get(0).setPlayerListName(newName);
                                         players.remove(0);
                                     }
                                 }
                                 printPlayerDispersion(commandSender);
-                                //starting the game ...
+                                //todo start the game
                             } else {
                                 commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");
                             }

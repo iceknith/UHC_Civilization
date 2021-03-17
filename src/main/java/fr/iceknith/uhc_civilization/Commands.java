@@ -1,5 +1,6 @@
 package fr.iceknith.uhc_civilization;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -66,7 +67,7 @@ public class Commands implements CommandExecutor {
                                     for (int i = 0; i < Main.playerCount.get(clan); i++) {
                                         Main.playerdistribution.put(players.get(0), clan);
                                         //Objects.requireNonNull(s.getTeam(String.valueOf(clan))).addEntry(String.valueOf(players.get(0)));
-                                        players.get(0).setDisplayName(ChatColor.BLUE+players.get(0).getName());
+                                        players.get(0).setDisplayName(ChatColor.BLUE + players.get(0).getName());
                                         players.remove(0);
                                     }
                                 }

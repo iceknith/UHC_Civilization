@@ -58,7 +58,7 @@ public class Commands implements CommandExecutor {
                                 Collections.shuffle(players);
                                 for (Clan clan : Main.playerCount.keySet()) {
                                     for (int i = 0; i < Main.playerCount.get(clan); i++) {
-                                        Main.playerdistribution.put(players.get(0), clan);
+                                        Main.playerDistribution.put(players.get(0), clan);
                                         ChatColor color = clan.getChatColor();
                                         String newName = String.valueOf(color) +
                                                 ChatColor.BOLD +
@@ -116,8 +116,8 @@ public class Commands implements CommandExecutor {
             StringBuilder msg = new StringBuilder();
             msg.append(clan.getChatColor()).append(clan.toText()).append(ChatColor.RESET).append(": ");
             boolean x = false;
-            for (Player player : Main.playerdistribution.keySet()) {
-                if (clan.equals(Main.playerdistribution.get(player))) {
+            for (Player player : Main.playerDistribution.keySet()) {
+                if (clan.equals(Main.playerDistribution.get(player))) {
                     if (x)
                         msg.append(", ");
                     x = true;

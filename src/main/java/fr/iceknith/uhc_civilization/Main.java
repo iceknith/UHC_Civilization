@@ -1,9 +1,12 @@
 package fr.iceknith.uhc_civilization;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 
 public final class Main extends JavaPlugin {
@@ -19,9 +22,19 @@ public final class Main extends JavaPlugin {
     public static Map<Clan, Integer> playerCount = new HashMap<>();
 
     /**
-     * The social class associated to each player
+     * The clan associated to each player
      */
-    public static Map<Player, Clan> playerdistribution = new HashMap<>();
+    public static Map<Player, Clan> playerDistribution = new HashMap<>();
+
+    /**
+     * The location of every base associated with the clan it belongs to
+     */
+    public static Map<Clan, Location> baseLoc = new HashMap<>();
+
+    /**
+     * weather the game has started or not
+     */
+    public static boolean isStarted = false;
 
     /**
      * Get the required amount of players based on what is set up with the /civ team
@@ -43,6 +56,17 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
         Bukkit.getServer().getPluginManager().registerEvents(new UhcListener(), this);
+
+        //reading the config file
+        File config = new File("config.properties");
+        try{
+            FileReader reader = new FileReader(config);
+            Properties props = new Properties();
+            props.load(reader);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

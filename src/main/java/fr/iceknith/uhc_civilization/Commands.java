@@ -13,14 +13,14 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         try {
             if (args.length >= 1) {
-                //determine the length
+                //Set the length
                 switch (args[0]) {
                     case "length":
                         Main.Length = Integer.parseInt(args[1]);
-                        commandSender.sendMessage("The length has been set to " + Main.Length + " minutes");
+                        commandSender.sendMessage("The duration of the game has been set to " + Main.Length + " minutes");
                         break;
 
-                    //determine the proportion of player per team
+                    //Set the proportion of player per team
                     case "team":
                         if (args.length >= 2) {
                             Clan clan;
@@ -93,7 +93,7 @@ public class Commands implements CommandExecutor {
                         }
                         break;
                     default:
-                        commandSender.sendMessage("couldn't find the specific argument you are looking for");
+                        commandSender.sendMessage("Invalid subcommand: '" + args[0] + "'");
                 }
             }
 

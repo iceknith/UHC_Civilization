@@ -83,6 +83,7 @@ public class Commands implements CommandExecutor {
                                         players.remove(0);
                                     }
                                 }
+                                commandSender.sendMessage("Starting game with following teams:");
                                 printPlayerDispersion(commandSender);
                                 //todo start the game
                             } else {
@@ -111,16 +112,27 @@ public class Commands implements CommandExecutor {
     }
 
     private void printPlayerDispersion(CommandSender sender) {
-        sender.sendMessage("Team player teams:");
-        for (Player player : Main.playerdistribution.keySet()) {
-            sender.sendMessage(player.getDisplayName() + "\t:\t" + Main.playerdistribution.get(player));
+        for (Clan clan : Main.playerCount.keySet()) {
+            StringBuilder msg = new StringBuilder();
+            msg.append(clan.getChatColor()).append(clan.toText()).append(ChatColor.RESET).append(": ");
+            boolean x = false;
+            for (Player player : Main.playerdistribution.keySet()) {
+                if (clan.equals(Main.playerdistribution.get(player))) {
+                    if (x)
+                        msg.append(", ");
+                    x = true;
+                    msg.append(player.getName());
+
+                }
+            }
+            sender.sendMessage(msg.toString());
         }
     }
 
     private void printPlayerCount(CommandSender sender) {
         sender.sendMessage("Team player counts:");
         for (Clan sClass : Main.playerCount.keySet()) {
-            sender.sendMessage(sClass.toString() + "\t:\t" + Main.playerCount.get(sClass));
+            sender.sendMessage(sClass.getChatColor() + sClass.toText() + ChatColor.RESET + ": " + Main.playerCount.get(sClass));
         }
     }
 

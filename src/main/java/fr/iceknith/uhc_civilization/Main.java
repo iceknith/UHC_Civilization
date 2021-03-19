@@ -1,6 +1,5 @@
 package fr.iceknith.uhc_civilization;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 

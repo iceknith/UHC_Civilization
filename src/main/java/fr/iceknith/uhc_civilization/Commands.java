@@ -142,6 +142,4 @@ public class Commands implements CommandExecutor {
             sender.sendMessage(clan.getChatColor() + clan.toText() + ChatColor.RESET + ": " + Main.playerCount.get(clan));
         }
     }
-
-
 }

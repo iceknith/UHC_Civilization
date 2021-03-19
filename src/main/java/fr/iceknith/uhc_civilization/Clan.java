@@ -36,7 +36,7 @@ public enum Clan {
             case BOURGEOIS:
                 return ChatColor.BLUE;
             case THIEF:
-                return ChatColor.BLACK;
+                return ChatColor.DARK_RED;
             case NOMADIC:
                 return ChatColor.GOLD;
             case FARMER:

@@ -26,6 +26,7 @@ public final class Main extends JavaPlugin {
      * The social class associated to each player
      */
     public static Map<Player, Clan> playerdistribution = new HashMap<>();
+    public static ScoreboardDisplay sd;
 
     /**
      * Get the required amount of players based on what is set up with the /civ team

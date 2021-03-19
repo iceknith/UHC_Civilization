@@ -74,7 +74,6 @@ public class Commands implements CommandExecutor {
                                                     "[" +
                                                     clan.toText() +
                                                     "] " +
-
                                                     players.get(0).getName() +
                                                     ChatColor.RESET;
                                         }
@@ -85,10 +84,20 @@ public class Commands implements CommandExecutor {
                                 }
                                 commandSender.sendMessage("Starting game with following teams:");
                                 printPlayerDispersion(commandSender);
-                                //todo start the game
+                                //Todo: start the game
 
                                 Main.isStarted = true;
                                 Main.timer = new Timer();
+
+
+                                Main.sd = new ScoreboardDisplay();
+                                Main.timer.addTask(new TimerTask() {
+                                    @Override
+                                    void run() {
+                                        Main.sd.update();
+                                        System.out.println("Aeughh");
+                                    }
+                                });
 
                             } else {
                                 commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");

@@ -118,7 +118,10 @@ public class Commands implements CommandExecutor {
     private void printPlayerDispersion(CommandSender sender) {
         for (Clan clan : Main.playerCount.keySet()) {
             StringBuilder msg = new StringBuilder();
-            msg.append(clan.getChatColor()).append(clan.toText()).append(ChatColor.RESET).append(": ");
+            msg.append(clan.getChatColor())
+                    .append(clan.toText())
+                    .append(ChatColor.RESET)
+                    .append(": ");
             boolean x = false;
             for (Player player : Main.playerdistribution.keySet()) {
                 if (clan.equals(Main.playerdistribution.get(player))) {
@@ -135,8 +138,8 @@ public class Commands implements CommandExecutor {
 
     private void printPlayerCount(CommandSender sender) {
         sender.sendMessage("Team player counts:");
-        for (Clan sClass : Main.playerCount.keySet()) {
-            sender.sendMessage(sClass.getChatColor() + sClass.toText() + ChatColor.RESET + ": " + Main.playerCount.get(sClass));
+        for (Clan clan : Main.playerCount.keySet()) {
+            sender.sendMessage(clan.getChatColor() + clan.toText() + ChatColor.RESET + ": " + Main.playerCount.get(clan));
         }
     }
 

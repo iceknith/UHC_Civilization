@@ -4,7 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
@@ -32,8 +34,8 @@ public final class Main extends JavaPlugin {
      */
     public static int totalPlayers() {
         int result = 0;
-        for(Clan sc : playerCount.keySet()){
-            result += playerCount.get(sc);
+        for (Clan clan : playerCount.keySet()) {
+            result += playerCount.get(clan);
         }
         return result;
     }
@@ -46,7 +48,7 @@ public final class Main extends JavaPlugin {
         instance = this;
         // Plugin startup logic
         Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
-        Bukkit.getServer().getPluginManager().registerEvents(new UhcListener(), this);
+        getServer().getPluginManager().registerEvents(new UhcListener(), this);
     }
 
     /**

@@ -86,6 +86,10 @@ public class Commands implements CommandExecutor {
                                 commandSender.sendMessage("Starting game with following teams:");
                                 printPlayerDispersion(commandSender);
                                 //todo start the game
+
+                                Main.isStarted = true;
+                                Main.timer = new Timer();
+
                             } else {
                                 commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");
                             }

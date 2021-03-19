@@ -8,11 +8,14 @@ import java.util.*;
 
 public final class Main extends JavaPlugin {
 
+    public static JavaPlugin instance;
     /**
      * The duration of the game
      */
     public static int Length;
 
+    public static Timer timer;
+    public static boolean isStarted = false;
     /**
      * The amount of players each team
      */
@@ -39,7 +42,8 @@ public final class Main extends JavaPlugin {
      * Method called at the start of the plugin
      */
     @Override
-    public void onEnable(){
+    public void onEnable() {
+        instance = this;
         // Plugin startup logic
         Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
         Bukkit.getServer().getPluginManager().registerEvents(new UhcListener(), this);

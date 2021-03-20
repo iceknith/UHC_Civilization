@@ -2,12 +2,13 @@ package fr.iceknith.uhc_civilization;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
@@ -57,16 +58,19 @@ public final class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
         Bukkit.getServer().getPluginManager().registerEvents(new UhcListener(), this);
 
-        //reading the config file
-        File config = new File("config.properties");
-        try{
-            FileReader reader = new FileReader(config);
-            Properties props = new Properties();
-            props.load(reader);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        FileConfiguration config = this.getConfig();
+        this.saveDefaultConfig();
+        baseLoc.put(Clan.BOURGEOIS, new Location(getServer().getWorlds().get(0), config.getInt("bourgeoisBase.x"),
+                config.getInt("bourgeoisBase.y"), config.getInt("bourgeoisBase.z")));
+        baseLoc.put(Clan.FARMER, new Location(getServer().getWorlds().get(0), config.getInt("farmerBase.x"),
+                config.getInt("farmerBase.y"), config.getInt("farmerBase.z")));
+        baseLoc.put(Clan.THIEF, new Location(getServer().getWorlds().get(0), config.getInt("thiefBase.x"),
+                config.getInt("thiefBase.y"), config.getInt("thiefBase.z")));
+        baseLoc.put(Clan.NOMADIC, new Location(getServer().getWorlds().get(0), config.getInt("nomadicBase.x"),
+                config.getInt("nomadicBase.y"), config.getInt("nomadicBase.z")));
+        baseLoc.put(Clan.SPEC, new Location(getServer().getWorlds().get(0), config.getInt("specBase.x"),
+                config.getInt("specBase.y"), config.getInt("specBase.z")));
     }
 
     /**

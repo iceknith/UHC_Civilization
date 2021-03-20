@@ -1,6 +1,7 @@
 package fr.iceknith.uhc_civilization;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 
 /**
  * Clan assigned to each player

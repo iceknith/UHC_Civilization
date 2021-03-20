@@ -80,6 +80,7 @@ public class Commands implements CommandExecutor {
                                         }
                                         players.get(0).setDisplayName(newName);
                                         players.get(0).setPlayerListName(newName);
+                                        players.get(0).teleport(Main.baseLoc.get(clan));
                                         players.remove(0);
                                     }
                                 }

@@ -1,6 +1,5 @@
 package fr.iceknith.uhc_civilization;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -18,8 +17,14 @@ public final class Main extends JavaPlugin {
      */
     public static int Length;
 
+    /**
+     * The timer is used to hold and manage all events related to time
+     */
     public static Timer timer;
-    public static boolean isStarted = false;
+    /**
+     * Whether the game has started or not
+     */
+    public static boolean isStarted;
     /**
      * The amount of players each team
      */
@@ -34,10 +39,6 @@ public final class Main extends JavaPlugin {
      * The location of every base associated with the clan it belongs to
      */
     public static Map<Clan, Location> baseLoc = new HashMap<>();
-
-    /**
-     * weather the game has started or not
-     */
 
     /**
      * Get the required amount of players based on what is set up with the /civ team

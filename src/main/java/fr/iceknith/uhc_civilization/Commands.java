@@ -90,16 +90,6 @@ public class Commands implements CommandExecutor {
                                 Main.isStarted = true;
                                 Main.timer = new Timer();
 
-
-                                Main.sd = new ScoreboardDisplay();
-                                Main.timer.addTask(new TimerTask() {
-                                    @Override
-                                    void run() {
-                                        Main.sd.update();
-                                        System.out.println("Aeughh");
-                                    }
-                                });
-
                             } else {
                                 commandSender.sendMessage("The amount of online players needs to correspond to the total amount of players you assigned to each team");
                             }

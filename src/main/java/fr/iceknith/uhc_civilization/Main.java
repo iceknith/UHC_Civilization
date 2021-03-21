@@ -1,5 +1,8 @@
 package fr.iceknith.uhc_civilization;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,10 +26,18 @@ public final class Main extends JavaPlugin {
     public static Map<Clan, Integer> playerCount = new HashMap<>();
 
     /**
-     * The social class associated to each player
+     * The clan associated to each player
      */
-    public static Map<Player, Clan> playerdistribution = new HashMap<>();
-    public static ScoreboardDisplay sd;
+    public static Map<Player, Clan> playerDistribution = new HashMap<>();
+
+    /**
+     * The location of every base associated with the clan it belongs to
+     */
+    public static Map<Clan, Location> baseLoc = new HashMap<>();
+
+    /**
+     * weather the game has started or not
+     */
 
     /**
      * Get the required amount of players based on what is set up with the /civ team
@@ -49,6 +60,19 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         Objects.requireNonNull(getCommand("civ")).setExecutor(new Commands());
         getServer().getPluginManager().registerEvents(new UhcListener(), this);
+
+        FileConfiguration config = this.getConfig();
+        this.saveDefaultConfig();
+        baseLoc.put(Clan.BOURGEOIS, new Location(getServer().getWorlds().get(0), config.getInt("bourgeoisBase.x"),
+                config.getInt("bourgeoisBase.y"), config.getInt("bourgeoisBase.z")));
+        baseLoc.put(Clan.FARMER, new Location(getServer().getWorlds().get(0), config.getInt("farmerBase.x"),
+                config.getInt("farmerBase.y"), config.getInt("farmerBase.z")));
+        baseLoc.put(Clan.THIEF, new Location(getServer().getWorlds().get(0), config.getInt("thiefBase.x"),
+                config.getInt("thiefBase.y"), config.getInt("thiefBase.z")));
+        baseLoc.put(Clan.NOMADIC, new Location(getServer().getWorlds().get(0), config.getInt("nomadicBase.x"),
+                config.getInt("nomadicBase.y"), config.getInt("nomadicBase.z")));
+        baseLoc.put(Clan.SPEC, new Location(getServer().getWorlds().get(0), config.getInt("specBase.x"),
+                config.getInt("specBase.y"), config.getInt("specBase.z")));
     }
 
     /**

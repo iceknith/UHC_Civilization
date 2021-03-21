@@ -1,9 +1,10 @@
 package fr.iceknith.uhc_civilization;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 
 /**
- * Social classes assigned to each player
+ * Clan assigned to each player
  */
 public enum Clan {
     /**

@@ -1,0 +1,21 @@
+bases:
+  bourgeois:
+    x: 0
+    y: 0
+    z: 0
+  thief:
+    x: 0
+    y: 0
+    z: 0
+  nomadic:
+    x: 0
+    y: 0
+    z: 0
+  farmer:
+    x: 0
+    y: 0
+    z: 0
+  spec:
+    x: 0
+    y: 0
+    z: 0

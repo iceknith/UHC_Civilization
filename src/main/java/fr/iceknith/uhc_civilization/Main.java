@@ -16,7 +16,6 @@ public final class Main extends JavaPlugin {
      * The duration of the game
      */
     public static int Length;
-
     /**
      * The timer is used to hold and manage all events related to time
      */
@@ -42,6 +41,7 @@ public final class Main extends JavaPlugin {
 
     /**
      * Get the required amount of players based on what is set up with the /civ team
+     *
      * @return The required amount of players for this game
      */
     public static int totalPlayers() {
@@ -64,16 +64,14 @@ public final class Main extends JavaPlugin {
 
         FileConfiguration config = this.getConfig();
         this.saveDefaultConfig();
-        baseLoc.put(Clan.BOURGEOIS, new Location(getServer().getWorlds().get(0), config.getInt("bourgeoisBase.x"),
-                config.getInt("bourgeoisBase.y"), config.getInt("bourgeoisBase.z")));
-        baseLoc.put(Clan.FARMER, new Location(getServer().getWorlds().get(0), config.getInt("farmerBase.x"),
-                config.getInt("farmerBase.y"), config.getInt("farmerBase.z")));
-        baseLoc.put(Clan.THIEF, new Location(getServer().getWorlds().get(0), config.getInt("thiefBase.x"),
-                config.getInt("thiefBase.y"), config.getInt("thiefBase.z")));
-        baseLoc.put(Clan.NOMADIC, new Location(getServer().getWorlds().get(0), config.getInt("nomadicBase.x"),
-                config.getInt("nomadicBase.y"), config.getInt("nomadicBase.z")));
-        baseLoc.put(Clan.SPEC, new Location(getServer().getWorlds().get(0), config.getInt("specBase.x"),
-                config.getInt("specBase.y"), config.getInt("specBase.z")));
+
+        for (Clan clan : Clan.getAll()) {
+            baseLoc.put(clan, new Location(getServer().getWorlds().get(0),
+                    config.getInt("bases." + clan.toString().toLowerCase() + ".x"),
+                    config.getInt("bases." + clan.toString().toLowerCase() + ".y"),
+                    config.getInt("bases." + clan.toString().toLowerCase() + ".z")
+            ));
+        }
     }
 
     /**

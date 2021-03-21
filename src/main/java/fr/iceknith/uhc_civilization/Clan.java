@@ -1,7 +1,9 @@
 package fr.iceknith.uhc_civilization;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Clan assigned to each player
@@ -32,6 +34,16 @@ public enum Clan {
      */
     SPEC;
 
+    public static Set<Clan> getAll() {
+        Set<Clan> clans = new HashSet<>();
+        clans.add(BOURGEOIS);
+        clans.add(THIEF);
+        clans.add(NOMADIC);
+        clans.add(FARMER);
+        clans.add(SPEC);
+        return clans;
+    }
+
     public ChatColor getChatColor() {
         switch (this) {
             case BOURGEOIS:
@@ -48,6 +60,7 @@ public enum Clan {
                 return ChatColor.RESET;
         }
     }
+
     public String toText() {
         switch (this) {
             case BOURGEOIS:

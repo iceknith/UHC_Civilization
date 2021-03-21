@@ -24,8 +24,8 @@ public class Timer {
             lastTime = System.currentTimeMillis();
             List<TimerTask> remove = new LinkedList<>();
             for (TimerTask task : tasks) {
+                //task.debug();
                 if (task.delay <= 0) {
-
                     if (task.isLimited) {
                         if (task.maxRuns <= 0) {
                             remove.add(task);
@@ -33,6 +33,8 @@ public class Timer {
                             task.run();
                             task.maxRuns--;
                         }
+                    }else{
+                        task.run();
                     }
                     task.delay = task.interval;
                 }
